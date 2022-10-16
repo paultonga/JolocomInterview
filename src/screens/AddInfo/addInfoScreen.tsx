@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, TextInput, Keyboard } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { useFormik } from 'formik';
 import Animated, {
   useAnimatedScrollHandler,
@@ -14,6 +21,7 @@ import {
 } from './addInfoScreen.models';
 import { FormInput } from '../../components/FormInput/formInput';
 import styles from './addInfoScreen.styles';
+import { usePallette } from '../../utils/colors';
 
 const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
   title,
@@ -21,6 +29,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
   onSubmitForm,
   windowHeight,
 }) => {
+  const { colors } = usePallette();
   const scrollTranslateY = useSharedValue(0);
 
   const lastNameInputRef = React.useRef<TextInput>(null);
@@ -51,7 +60,11 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
   });
 
   return (
-    <View style={[styles.page, { height: windowHeight }]}>
+    <View
+      style={[
+        styles.page,
+        { height: windowHeight, backgroundColor: colors.background },
+      ]}>
       <Header title={title} sharedValue={scrollTranslateY} />
       <Animated.ScrollView
         onScroll={scrollHandler}
@@ -60,8 +73,13 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
         contentContainerStyle={styles.scrollViewContent}
         automaticallyAdjustKeyboardInsets>
         <View style={styles.pageHeader}>
-          <Text style={styles.pageHeaderText}>{title}</Text>
-          <Text style={styles.pageDescriptionText}>{description}</Text>
+          <Text style={[styles.pageHeaderText, { color: colors.primaryText }]}>
+            {title}
+          </Text>
+          <Text
+            style={[styles.pageDescriptionText, { color: colors.primaryText }]}>
+            {description}
+          </Text>
         </View>
 
         <View style={styles.formContainer}>
