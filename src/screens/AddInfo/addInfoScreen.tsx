@@ -61,6 +61,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
 
   return (
     <View
+      testID="add-info-screen"
       style={[
         styles.page,
         { height: windowHeight, backgroundColor: colors.background },
@@ -84,6 +85,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
 
         <View style={styles.formContainer}>
           <FormInput
+            testID="first-name"
             keyboardType="default"
             returnKeyType="done"
             style={styles.formInput}
@@ -96,6 +98,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
           />
 
           <FormInput
+            testID="last-name"
             ref={lastNameInputRef}
             keyboardType="default"
             returnKeyType="done"
@@ -109,6 +112,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
           />
 
           <FormInput
+            testID="phone"
             ref={phoneInputRef}
             keyboardType="phone-pad"
             returnKeyType="done"
@@ -122,6 +126,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
           />
 
           <FormInput
+            testID="email"
             ref={emailInputRef}
             keyboardType="email-address"
             returnKeyType="done"
@@ -136,6 +141,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
           />
 
           <FormInput
+            testID="age"
             ref={ageInputRef}
             keyboardType="numeric"
             returnKeyType="done"
@@ -149,6 +155,7 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
           />
 
           <SquareButton
+            testID="submit"
             onPress={handleSubmit}
             label="Submit"
             disabled={!isValid}

@@ -14,6 +14,7 @@ const SquareButton: React.FC<SquareButtonProps> = ({
   label,
   onPress,
   disabled,
+  testID,
 }) => {
   const sharedValue = useSharedValue(1);
 
@@ -54,6 +55,7 @@ const SquareButton: React.FC<SquareButtonProps> = ({
         { opacity: disabled ? 0.6 : 1 },
       ]}>
       <Pressable
+        testID={testID}
         onPressIn={shrink}
         onPressOut={grow}
         onPress={onPress}
