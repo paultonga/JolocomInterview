@@ -2,7 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   page: {
+    height: '100%',
     overflow: 'hidden',
+  },
+  scrollViewWrapper: {
+    flex: 1,
+    flexGrow: 1,
   },
   pageHeader: {
     alignItems: 'center',

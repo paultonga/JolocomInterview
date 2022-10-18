@@ -20,5 +20,4 @@ export interface AddInfoScreenProps {
   title: string;
   description: string;
   onSubmitForm: () => void;
-  windowHeight: number;
 }

@@ -1,5 +1,5 @@
 export interface ResultScreenProps {
   onStartOver: () => void;
-  windowHeight: number;
+  setOffset: (_offset: number) => void;
   isSuccess: boolean;
 }

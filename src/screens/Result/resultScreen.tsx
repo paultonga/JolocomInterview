@@ -8,17 +8,15 @@ import styles from './resultScreen.styles';
 
 const ResultScreen: React.FC<ResultScreenProps> = ({
   onStartOver,
-  windowHeight,
   isSuccess,
+  setOffset,
 }) => {
   const { colors } = usePallette();
 
   return (
     <View
-      style={[
-        styles.container,
-        { height: windowHeight, backgroundColor: colors.background },
-      ]}>
+      onLayout={(event) => setOffset(event.nativeEvent.layout.y)}
+      style={[styles.container, { backgroundColor: colors.background }]}>
       <Text style={[styles.title, { color: colors.primaryText }]}>
         {isSuccess ? Strings.SUCCESS_HEADER : Strings.FAILURE_HEADER}
       </Text>

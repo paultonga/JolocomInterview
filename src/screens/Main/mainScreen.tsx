@@ -1,5 +1,4 @@
 import React from 'react';
-import { useWindowDimensions } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -14,17 +13,17 @@ import { generateRandomBool } from '../../utils';
 import styles from './mainScreen.styles';
 
 const MainScreen = () => {
-  const window = useWindowDimensions();
   const sharedValue = useSharedValue(0);
+  const [offset, setOffset] = React.useState(0);
 
   const [formVisible, setFormVisible] = React.useState(true);
   const [success, setSuccess] = React.useState(false);
 
   const handleScroll = React.useCallback(() => {
-    sharedValue.value = withSpring(formVisible ? -window.height : 0);
+    sharedValue.value = withSpring(formVisible ? -offset : 0);
 
     setFormVisible(!formVisible);
-  }, [formVisible, sharedValue, window.height]);
+  }, [formVisible, offset, sharedValue]);
 
   const submitForm = React.useCallback(async () => {
     const isSuccess = await generateRandomBool();
@@ -52,11 +51,10 @@ const MainScreen = () => {
         title={Strings.ADD_INFO_HEADER}
         description={Strings.ADD_INFO_DESCRIPTION}
         onSubmitForm={submitForm}
-        windowHeight={window.height}
       />
 
       <ResultScreen
-        windowHeight={window.height}
+        setOffset={(_offset: number) => setOffset(_offset)}
         onStartOver={handleScroll}
         isSuccess={success}
       />

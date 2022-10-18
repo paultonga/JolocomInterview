@@ -27,7 +27,6 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
   title,
   description,
   onSubmitForm,
-  windowHeight,
 }) => {
   const { colors } = usePallette();
   const scrollTranslateY = useSharedValue(0);
@@ -62,106 +61,109 @@ const AddInfoScreen: React.FC<AddInfoScreenProps> = ({
   return (
     <View
       testID="add-info-screen"
-      style={[
-        styles.page,
-        { height: windowHeight, backgroundColor: colors.background },
-      ]}>
+      style={[styles.page, { backgroundColor: colors.background }]}>
       <Header title={title} sharedValue={scrollTranslateY} />
-      <Animated.ScrollView
-        onScroll={scrollHandler}
-        scrollEventThrottle={16}
-        contentInsetAdjustmentBehavior="always"
-        contentContainerStyle={styles.scrollViewContent}
-        automaticallyAdjustKeyboardInsets>
-        <View style={styles.pageHeader}>
-          <Text style={[styles.pageHeaderText, { color: colors.primaryText }]}>
-            {title}
-          </Text>
-          <Text
-            style={[styles.pageDescriptionText, { color: colors.primaryText }]}>
-            {description}
-          </Text>
-        </View>
+      <View style={styles.scrollViewWrapper}>
+        <Animated.ScrollView
+          onScroll={scrollHandler}
+          scrollEventThrottle={16}
+          contentInsetAdjustmentBehavior="always"
+          contentContainerStyle={[styles.scrollViewContent]}
+          automaticallyAdjustKeyboardInsets>
+          <View style={styles.pageHeader}>
+            <Text
+              style={[styles.pageHeaderText, { color: colors.primaryText }]}>
+              {title}
+            </Text>
+            <Text
+              style={[
+                styles.pageDescriptionText,
+                { color: colors.primaryText },
+              ]}>
+              {description}
+            </Text>
+          </View>
 
-        <View style={styles.formContainer}>
-          <FormInput
-            testID="first-name"
-            keyboardType="default"
-            returnKeyType="done"
-            style={styles.formInput}
-            placeholder="First name"
-            onSubmitEditing={() => lastNameInputRef?.current?.focus()}
-            onChangeText={handleChange('firstName')}
-            onBlur={handleBlur('firstName')}
-            value={values.firstName}
-            error={errors.firstName}
-          />
+          <View style={styles.formContainer}>
+            <FormInput
+              testID="first-name"
+              keyboardType="default"
+              returnKeyType="done"
+              style={styles.formInput}
+              placeholder="First name"
+              onSubmitEditing={() => lastNameInputRef?.current?.focus()}
+              onChangeText={handleChange('firstName')}
+              onBlur={handleBlur('firstName')}
+              value={values.firstName}
+              error={errors.firstName}
+            />
 
-          <FormInput
-            testID="last-name"
-            ref={lastNameInputRef}
-            keyboardType="default"
-            returnKeyType="done"
-            style={styles.formInput}
-            placeholder="Last name"
-            onSubmitEditing={() => phoneInputRef?.current?.focus()}
-            onChangeText={handleChange('lastName')}
-            onBlur={handleBlur('lastName')}
-            value={values.lastName}
-            error={errors.lastName}
-          />
+            <FormInput
+              testID="last-name"
+              ref={lastNameInputRef}
+              keyboardType="default"
+              returnKeyType="done"
+              style={styles.formInput}
+              placeholder="Last name"
+              onSubmitEditing={() => phoneInputRef?.current?.focus()}
+              onChangeText={handleChange('lastName')}
+              onBlur={handleBlur('lastName')}
+              value={values.lastName}
+              error={errors.lastName}
+            />
 
-          <FormInput
-            testID="phone"
-            ref={phoneInputRef}
-            keyboardType="phone-pad"
-            returnKeyType="done"
-            style={styles.formInput}
-            placeholder="Phone number"
-            onSubmitEditing={() => emailInputRef?.current?.focus()}
-            onChangeText={handleChange('phone')}
-            onBlur={handleBlur('phone')}
-            value={values.phone}
-            error={errors.phone}
-          />
+            <FormInput
+              testID="phone"
+              ref={phoneInputRef}
+              keyboardType="phone-pad"
+              returnKeyType="done"
+              style={styles.formInput}
+              placeholder="Phone number"
+              onSubmitEditing={() => emailInputRef?.current?.focus()}
+              onChangeText={handleChange('phone')}
+              onBlur={handleBlur('phone')}
+              value={values.phone}
+              error={errors.phone}
+            />
 
-          <FormInput
-            testID="email"
-            ref={emailInputRef}
-            keyboardType="email-address"
-            returnKeyType="done"
-            style={styles.formInput}
-            placeholder="Email"
-            onSubmitEditing={() => ageInputRef?.current?.focus()}
-            onChangeText={handleChange('email')}
-            onBlur={handleBlur('email')}
-            autoCapitalize="none"
-            value={values.email}
-            error={errors.email}
-          />
+            <FormInput
+              testID="email"
+              ref={emailInputRef}
+              keyboardType="email-address"
+              returnKeyType="done"
+              style={styles.formInput}
+              placeholder="Email"
+              onSubmitEditing={() => ageInputRef?.current?.focus()}
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              autoCapitalize="none"
+              value={values.email}
+              error={errors.email}
+            />
 
-          <FormInput
-            testID="age"
-            ref={ageInputRef}
-            keyboardType="numeric"
-            returnKeyType="done"
-            style={styles.formInput}
-            placeholder="Age"
-            onSubmitEditing={() => Keyboard.dismiss()}
-            onChangeText={handleChange('age')}
-            onBlur={handleBlur('age')}
-            value={values.age}
-            error={errors.age}
-          />
+            <FormInput
+              testID="age"
+              ref={ageInputRef}
+              keyboardType="numeric"
+              returnKeyType="done"
+              style={styles.formInput}
+              placeholder="Age"
+              onSubmitEditing={() => Keyboard.dismiss()}
+              onChangeText={handleChange('age')}
+              onBlur={handleBlur('age')}
+              value={values.age}
+              error={errors.age}
+            />
 
-          <SquareButton
-            testID="submit"
-            onPress={handleSubmit}
-            label="Submit"
-            disabled={!isValid}
-          />
-        </View>
-      </Animated.ScrollView>
+            <SquareButton
+              testID="submit"
+              onPress={handleSubmit}
+              label="Submit"
+              disabled={!isValid}
+            />
+          </View>
+        </Animated.ScrollView>
+      </View>
     </View>
   );
 };
